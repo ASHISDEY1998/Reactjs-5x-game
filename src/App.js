@@ -1,23 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
+import Inputpage from "./component/Inputpage"
+import Outputpage from "./component/Outputpage"
 import './App.css';
 
 function App() {
+const [pagetype,setpagetype]=React.useState("input")
+const [matrix,setmatrix]=React.useState(0)
+
+const callpage=(whichpage)=>{
+  // eslint-disable-next-line default-case
+  switch(whichpage){
+    case "input":
+    return <Inputpage update={setmatrix} updatePage={setpagetype}/>;
+    case "output":
+    return <Outputpage matrix={matrix}/>
+  }
+}
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {callpage(pagetype)}
       </header>
     </div>
   );
